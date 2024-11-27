@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICOM File Processing in Rust</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+        }
+        .content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header text-center">
+    <h1>DICOM File Processing in Rust</h1>
+</header>
+
+<div class="container my-5">
+    <div class="content">
+        <h2>Introduction</h2>
+        <p>This tutorial demonstrates how to process DICOM files in the Rust programming language using the <code>dicom</code> crate. DICOM (Digital Imaging and Communications in Medicine) is a standard format for medical imaging data. The code provided extracts key metadata from a DICOM file and outputs it in a structured, JSON-like format.</p>
+
+        <h2>Code Overview</h2>
+        <p>The following Rust code opens a DICOM file, iterates through its tags, processes the associated values, and generates a JSON-like structure containing relevant metadata.</p>
+
+        <pre>
+use dicom_object::open_file; // Function to open DICOM files
+use dicom_dictionary_std::tags; // Standard DICOM tags
+use std::collections::HashMap;
+use serde_json::{json, Value}; // Serde JSON for building output
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Path to the DICOM file
+    let file_path = r"ID_0003_AGE_0075_CONTRAST_1_CT.dcm";
+
+    let obj = open_file(file_path)?;
+
+    let mut dicom_data: HashMap<String, HashMap<String, String>> = HashMap::new();
+
+    // Mapping of VR abbreviations to full descriptions
+    let vr_full_names = HashMap::from([
+        ("AE", "Application Entity"),
+        ("AS", "Age String"),
+        ("AT", "Attribute Tag"),
+        ("CS", "Code String"),
+        ("DA", "Date"),
+        ("DS", "Decimal String"),
+        ("DT", "Date Time"),
+        ("FL", "Floating Point Single"),
+        ("FD", "Floating Point Double"),
+        ("IS", "Integer String"),
+        ("LO", "Long String"),
+        ("LT", "Long Text"),
+        ("OB", "Other Byte String"),
+        ("OD", "Other Double"),
+        ("OF", "Other Float"),
+        ("OW", "Other Word String"),
+        ("PN", "Patient Name"),
+        ("SH", "Short String"),
+        ("SL", "Signed Long"),
+        ("SQ", "Sequence"),
+        ("SS", "Signed Short"),
+        ("ST", "Short Text"),
+        ("TM", "Time"),
+        ("UI", "Unique Identifier"),
+        ("UL", "Unsigned Long"),
+        ("UN", "Unknown"),
+        ("UR", "Uniform Resource Identifier"),
+        ("US", "Unsigned Short"),
+        ("UT", "Unlimited Text"),
+    ]);
+
+    // Iterate through the tags in the DICOM file
+    for tag in obj.tags() {
+        let element = obj.element(tag)?;
+
+        // Skip or process PixelData separately
+        if tag == tags::PIXEL_DATA {
+            continue;
+        }
+
+        // Get the tag and VR (Value Representation)
+        let tag_str = format!("{:?}", element.header().tag);
+        let vr_str = format!("{:?}", element.vr());
+
+        // Map the VR abbreviation to the full name
+        let full_vr_name = vr_full_names.get(&vr_str.as_str())
+            .unwrap_or(&"Unknown VR")
+            .to_string();
+        let value_str = format!("{:?}", element.value());
+
+        // Store the tag details in a HashMap
+        let tag_details = dicom_data.entry(tag_str).or_insert_with(HashMap::new);
+        tag_details.insert("VR".to_string(), full_vr_name);
+        tag_details.insert("Value".to_string(), value_str);
+    }
+
+    // Convert the dictionary to a JSON object
+    let json_output: Value = json!(dicom_data);
+
+    // Print the formatted JSON output
+    println!("{}", serde_json::to_string_pretty(&json_output)?);
+
+    Ok(())
+}
+        </pre>
+
+        <h2>Conclusion</h2>
+        <p>This Rust program efficiently extracts key metadata from a DICOM file and formats it into a structured JSON object. By utilizing the <code>dicom</code> crate along with the <code>serde_json</code> library, you can manage and manipulate DICOM data effectively in your Rust applications.</p>
+
+        <div class="footer">
+            <p>For more information or to explore the source code, visit my GitHub repository:</p>
+            <p><a href="https://github.com/GEORGEMUTALE" target="_blank">Visit my GitHub</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js (for components like dropdowns) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
