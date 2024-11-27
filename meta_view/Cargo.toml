@@ -1,0 +1,11 @@
+[package]
+name = "meta_view"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dicom = "0.8.0"
+dicom-core = "0.8.0"
+dicom-dictionary-std = "0.8.0"
+dicom-object = "0.8.0"
+serde_json = "1.0.133"

@@ -1,0 +1,10 @@
+C:\Users\User\OneDrive\Desktop\see\target\debug\deps\libdicom_pixeldata-f8b19c00cd62b976.rmeta: C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src/lib.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\attribute.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\lut.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\transcode.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\encapsulation.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\transform.rs
+
+C:\Users\User\OneDrive\Desktop\see\target\debug\deps\dicom_pixeldata-f8b19c00cd62b976.d: C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src/lib.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\attribute.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\lut.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\transcode.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\encapsulation.rs C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\transform.rs
+
+C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src/lib.rs:
+C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\attribute.rs:
+C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\lut.rs:
+C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\transcode.rs:
+C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\encapsulation.rs:
+C:\Users\User\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dicom-pixeldata-0.8.0\src\transform.rs:
